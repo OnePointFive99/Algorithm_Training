@@ -1,0 +1,33 @@
+1.暴力法，从两头加起来
+
+int pivotIndex(int* nums, int numsSize){
+    for(int i=0;i<numsSize;i++){
+        int leftsum=0;
+        int rightsum=0;
+        for(int j=0;j<i;j++){
+            leftsum+=nums[j];
+        }
+        for(int k=numsSize-1;k>i;k--){
+            rightsum+=nums[k];
+        }
+        if(rightsum==leftsum)return i;
+    }
+return -1;
+}
+
+2.真正看懂题目后的做法
+题意满足：中心索引之前的所有数组元素之和+中心索引之后的元素之和+索引元素=数组元素总和
+先求出总和，然后根据题意，数组中心两边相等，得到2*SUM==sum-nums[i]的判断条件
+
+int pivotIndex(int* nums, int numsSize){
+    int sum=0;  
+    int SUM=0;
+    for(int i=0;i<numsSize;i++){
+        sum+=nums[i];
+    }
+    for(int i=0;i<numsSize;i++){
+        if(2*SUM==sum-nums[i])return i;
+        SUM+=nums[i];
+    }
+    return -1;
+}
