@@ -1,0 +1,26 @@
+//暴力
+int searchInsert(int* nums, int numsSize, int target){
+    int i=0;
+    if(target>nums[numsSize-1])return numsSize;
+    else if(target<nums[0])return 0;
+    else for(i=0;i<numsSize;i++){
+            if(target==nums[i])return i;
+            else if(target>nums[i]&&target<nums[i+1])return i+1;  
+         }
+    return 0;
+}
+
+//二分查找
+int searchInsert(int* nums, int numsSize, int target){
+    int i=0;
+    if(target>nums[numsSize-1])return numsSize;
+    int left=0;
+    int right=numsSize-1;
+    while(left<right){
+        int mid=left+(right-left)/2;
+        if(nums[mid]>=target){
+            right=mid;
+        }
+        else {left=mid+1;}
+    }return left;
+}
