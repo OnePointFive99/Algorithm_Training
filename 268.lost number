@@ -1,0 +1,9 @@
+此题使用位运算较简单，根据异或运算，a^a=0,a^0=a
+将nums全部元素异或，同时异或i即可得到不成对的数字，这就是丢失的那个数字
+C code:
+int missingNumber(int* nums, int numsSize){
+    int result=numsSize;
+    for(int i=0;i<numsSize;i++){
+        result=result^nums[i]^i;
+    }return result;
+}
