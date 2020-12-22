@@ -1,0 +1,10 @@
+//与7.整数反转思路一致，利用%运算得到最低位，次次乘权将其反转到最高位，注意原数字要不断除以权
+//C代码
+uint32_t reverseBits(uint32_t n) {
+    long result=0;
+    for(int i=0;i<32;i++){
+         result=result*2+n%2;
+         n/=2;
+    }
+    return result;
+}
