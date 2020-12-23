@@ -1,0 +1,20 @@
+解题思路
+
+使用%2运算获得二进制最低位；
+使用/2运算将次低位更新为最低位；
+题目为1的位置不同的情况加一，则加上每一位的异或结果即可
+代码
+
+int hammingDistance(int x, int y){
+    int result=0;
+    int temp1,temp2;
+    while(x|y){
+        temp1=x%2;
+        temp2=y%2;
+        result+=(temp1^temp2);
+        x/=2;
+        y/=2;
+    }return result;
+    
+}
+
