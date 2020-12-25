@@ -1,0 +1,22 @@
+我的思路是统计输入数字3进制形式下1的个数，若换算成的3进制串只有1个1，则为3的幂，否则不是
+### 代码
+```c
+bool isPowerOfThree(int n){
+    int count=0;
+    while(n){
+        count+=n%3;
+        n/=3;
+    }return count==1?true:false;
+}
+```
+### 不使用循环
+```cpp
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+        if(n<=0)return false;
+        double result=log10(n)/log10(3);//换底公式
+        return result == floor(result);//floor函数判断result（即log3(n)）是否为整数
+
+    }
+};
