@@ -1,0 +1,21 @@
+C:统计输入数字4进制形式下1的个数，若换算成的4进制串只有1个1，则为4的幂，否则不是
+C++:使用换底公式，验证log4（n）是否为整数，整数则为44的幂，否则不是
+
+代码
+
+bool isPowerOfThree(int n){
+    int count=0;
+    while(n){
+        count+=n%4;
+        n/=4;
+    }return count==1?true:false;
+}
+
+class Solution {
+public:
+    bool isPowerOfFour(int n) {
+        if(n<=0)return false;
+        double result= log10(n)/log10(4);
+        return result==floor(result);
+    }
+};
