@@ -1,0 +1,32 @@
+//解题思路
+
+//使用海明重量的函数计算十进制数字对应二进制串中1的个数，若小时数字和分钟数字的海明重量之和恰好为num则输出此时的时间
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+
+ int hammingWeight(int n) {
+    int result=0;
+    while(n)
+    {
+        result+=n%2;
+        n>>=1;
+    }
+    return result;
+}
+
+char ** readBinaryWatch(int num, int* returnSize){
+  char **re =(char**)calloc(500,sizeof(char*));
+  int hour=0;
+  int minute=0;
+  *returnSize=0;
+  for(hour=0;hour<12;++hour){
+      for(minute=0;minute<60;++minute){
+          if(hammingWeight(hour)+hammingWeight(minute)==num){
+              re[*returnSize]=(char*)calloc(6,sizeof(char));
+              sprintf(re[*returnSize],"%d:%02d",hour,minute);
+              ++(*returnSize);
+          }
+      }
+  }return re;
+}
