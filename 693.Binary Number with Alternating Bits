@@ -1,0 +1,19 @@
+解题思路
+
+    temp1代表当前最低位；temp2代表当前次低位
+    n/=2;更新最低位与次低位
+    一旦发现最低位次低位异或结果为0则返回false，
+    n=0仍未发现则返回true
+
+代码
+
+bool hasAlternatingBits(int n){
+    int temp1=0;
+    int temp2=0;
+    while(n){
+        temp1=n%2;
+        temp2=(n/2)%2;
+        if(temp1^temp2==0)return false;
+        else  n/=2;
+    }return true;
+}
