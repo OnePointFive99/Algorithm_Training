@@ -1,0 +1,13 @@
+
+ //本题思路就是简单的将因子相加，但是注意循环变量i不能到num，所以用i*i<=num缩小范围
+
+//代码
+
+bool checkPerfectNumber(int num){
+    int count=0;
+    if(num==1)return false;
+    for(int i=2;i*i<=num;i++){
+        if(num%i==0)count+=i+num/i;
+    }return count+1==num?true:false;
+
+}
