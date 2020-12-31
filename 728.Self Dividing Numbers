@@ -1,0 +1,38 @@
+//解题思路
+
+判断自除数函数：根据题意，如果不由0组成且可以被自身的数整除即为自除数，这里只需要提取每一位数查看是否可以整除即可
+
+主函数：分配空间，如果出现自除数就放入一个新空间
+
+//代码
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+
+bool isSelfdivid(int num){
+    int init=num;
+    while(num){
+        int n=num%10;
+        if(n==0)return false;
+        else if(init%n!=0)return false;
+        num/=10;
+    }return true;
+}
+
+int* selfDividingNumbers(int left, int right, int* returnSize){
+    *returnSize=0;
+    int *re =calloc(right-left+1,sizeof(int));
+    int j=0;
+    for(int i=left;i<=right;i++){
+        int temp=i;
+       
+        if(isSelfdivid(temp)==true){
+            
+            re[j]=temp;
+            j++;
+            ++(*returnSize);
+        }
+    }return re;
+}
+
