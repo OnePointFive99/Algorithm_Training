@@ -1,0 +1,18 @@
+//解题思路
+
+//本题涉及到一点等效，n-1个元素+1等效于1个元素-1，故可以视为要让比最小元素大的元素减多少次才能让全部元素相等，所以我们找出最小元素，让其他元素跟最小元素作个差，统计这些差的和就可以了
+//代码
+
+int minMoves(int* nums, int numsSize){
+    int min=nums[0];
+    int count=0;
+
+    for(int i=0;i<numsSize;i++){
+        if(nums[i]<min)min=nums[i];
+    }
+    
+    for(int j=0;j<numsSize;j++){
+        count+=nums[j]-min;
+    }return count;
+}
+
