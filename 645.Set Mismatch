@@ -1,0 +1,32 @@
+/*解题思路
+
+使用一个数组统计nums元素出现次数，将次数为二的nums[i]返回即为重复数字
+丢失的数字使用1~n的和减去1~n有数字丢失的和
+1~n有数字丢失的和用nums所有元素和减去一个重复数字即可
+代码
+*/
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+
+int* findErrorNums(int* nums, int numsSize, int* returnSize){
+    int *re=malloc(2*sizeof(int));
+    int *assis=calloc(numsSize+1,sizeof(int));//用于检测重复数字
+    int correctSum=((1+numsSize)*numsSize)/2;//1~numsSize正确和
+    int errorSum=0;
+    int errorNumber=0;
+    *returnSize=2;
+    
+    for(int i=0;i<numsSize;i++){
+         assis[nums[i]]++;
+         if(assis[nums[i]]==2)errorNumber=nums[i];//nums[i]作为下标，两个nums[i]相等时加的是assis的同一个位置
+         errorSum+=nums[i];
+    }
+    
+    int lostNumber=correctSum-(errorSum-errorNumber);
+    
+    re[0]=errorNumber;
+    re[1]=lostNumber;
+    return re;
+}
+
