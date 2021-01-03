@@ -1,0 +1,16 @@
+解题思路
+
+本题考查阶乘结果尾部有几个0，如103030是1个，100是2个；
+分析阶乘因子：仅有X5*2的倍数可以形成尾部0，容易理解2的倍数要多于型为X5的因子，所以统计5^i的个数即可
+如代码：count+=(int)(n/pow(5,i));
+代码
+
+int trailingZeroes(int n){
+    int count=0;
+
+    for(int i=1;pow(5,i)<=n;i++){
+        count+=(int)(n/pow(5,i));
+    }return count;
+
+}
+
