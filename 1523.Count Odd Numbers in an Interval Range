@@ -1,0 +1,13 @@
+解题思路
+
+    本题直接遍历会超时
+    查看提示发现可以找区间内连续数字与奇数个数的关系，由于0开始偶数奇数轮流出现，当high-low+1为偶数时，边界为一奇一偶，当边界均为偶数或奇数时，high-low+1为奇数，此时讨论：若全为偶数，则区间内奇数个数为(int)high-low/2;若全为奇数，则区间内奇数个数为high-low/2+1;
+
+代码
+
+int countOdds(int low, int high){
+    int count=high-low+1;
+    if(count%2==0)return count/2;
+    else if (high%2==0)return (int)count/2;
+    else return (int)count/2+1;
+}
