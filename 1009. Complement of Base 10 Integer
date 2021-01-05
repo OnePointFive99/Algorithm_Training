@@ -1,0 +1,18 @@
+解题思路
+
+    此题根据反码的意义，反码与源码互补，故统计原码位数，用这个位数的最大值减去原码的十进制数即可得到结果
+
+代码
+
+int bitwiseComplement(int N){
+    int result=0;
+    int count=0;
+    int temp=N;
+    while(temp){
+        temp/=2;
+        count++;
+    }
+    int max=pow(2,count)-1;
+    return N==0?1:max-N;
+
+}
