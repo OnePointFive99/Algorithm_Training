@@ -1,0 +1,32 @@
+解题思路
+
+    此题理解了投影的数学意义就好办，所谓投影就是在某平面能投下的最大面积
+    所以在xoy平面的投影就是非零项的数量，我用了gridSize*(*gridColSize)-零项的数量来计算
+    在xoz平面的投影就是各个子数组的最大值之和
+    在yoz平面的投影就是各个子数组相同位置的最大值之和
+    把三个平面面积相加即可
+    可改进：使用数组存放最大值，就避免了两次嵌套循环
+
+代码
+
+
+int projectionArea(int** grid, int gridSize, int* gridColSize){
+    int xyCount=gridSize*(*gridColSize);
+    int xzCount=0;
+    int yzCount=0;
+    for(int i=0;i<gridSize;i++){
+        int xMax=grid[i][0];
+        for(int j=0;j<*gridColSize;j++){
+            if(grid[i][j]==0)xyCount--;
+            if(grid[i][j]>xMax)xMax=grid[i][j];
+        }xzCount+=xMax;
+    }
+    for(int p=0;p<*gridColSize;p++){
+        int yMax=grid[0][p];
+        for(int q=0;q<gridSize;q++){
+            if(grid[q][p]>yMax)yMax=grid[q][p];
+        } yzCount+=yMax;
+    }return xyCount+xzCount+yzCount;
+
+}
+
