@@ -1,0 +1,28 @@
+解题思路
+
+本题使用快慢指针方法：慢指针一次进行一次快乐数转换，快指针一次进行两次快乐数转换
+如果快指针等于慢指针，要么是循环，要么是均为1（慢指针追上快指针），return 判断一下即可。
+代码
+
+int create(int n){
+    int ret=0;
+    while(n){
+        int temp=0;
+        temp=n%10;
+        ret+=temp*temp;
+        n/=10;
+    }return ret;
+}
+
+
+bool isHappy(int n){
+    int slow=create(n);
+    int fast=create(create(n));
+    while(slow!=fast){
+        slow=create(slow);
+        fast=create(create(fast));
+    }
+    return  slow==1;
+   
+}
+
