@@ -1,0 +1,24 @@
+int surfaceArea(int** grid, int gridSize, int* gridColSize){
+    int s=0;
+    int k;
+    for(int i=0;i<gridSize;i++){
+        for(int j=0;j<*gridColSize;j++){
+            for(k=0; k<grid[i][j]; k++){
+                s+=6;//一个立方体表面积为6
+                if(k>0){
+                    s -= 2;
+                }
+                // 前面相邻
+                if(i>0 && grid[i-1][j]>k){
+                    s -= 2;
+                }
+                // 左面相邻
+                if(j>0 && grid[i][j-1]>k){
+                    s -= 2;
+                }
+            }
+        }
+    }
+    return s; 
+
+}
