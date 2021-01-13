@@ -1,0 +1,29 @@
+解题思路
+
+使用dy/dx计算斜率，验证其他点是否在直线上，思路简单
+注意细节：斜率为浮点数，b为浮点数，以及验证时的强制类型转换
+不要忘记斜率不存在的情况
+代码
+
+bool checkStraightLine(int** coordinates, int coordinatesSize, int* coordinatesColSize){
+    if(coordinatesSize>=2){
+        double k=0;
+        int dy=coordinates[coordinatesSize-1][1]-coordinates[0][1];
+        int dx=coordinates[coordinatesSize-1][0]-coordinates[0][0];
+        if(dx!=0){
+            k=(double)dy/dx;
+            double b=(double)coordinates[0][1]-k*coordinates[0][0];
+            for(int i=1;i<coordinatesSize-1;i++){
+                if(k*(double)coordinates[i][0]+b!=(double)coordinates[i][1])return false;
+            }return true;
+        }
+        else {
+            for(int i=1;i<=coordinatesSize-2;i++){
+                if(coordinates[i][0]!=coordinates[0][0])return false;
+            }return true;
+        }
+        
+    }else return false;
+
+}
+
