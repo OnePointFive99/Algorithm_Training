@@ -1,0 +1,32 @@
+解题思路
+
+用一个for循环，验证i与n-i是否含有零，没有则输出
+代码
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+bool ifnotHavezero(int num){
+    if(num==0)return false;
+    int temp=0;
+    while(num){
+        temp=num%10;
+        num/=10;
+        if(temp==0)return false;
+    }return true;
+}
+
+int* getNoZeroIntegers(int n, int* returnSize){
+     int *re=malloc(2*sizeof(int));
+    *returnSize=2;
+    for(int i=1;i<n;i++){
+        if(ifnotHavezero(i)&&ifnotHavezero(n-i)){
+            re[0]=i;
+            re[1]=n-i;
+            return re;
+        } 
+    }re[0]=-1;
+    re[1]=-1;
+    return re;
+}
+
