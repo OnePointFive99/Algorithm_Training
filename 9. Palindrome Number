@@ -1,0 +1,16 @@
+解题思路
+
+普通的算法，参照整数反转，将输入的数字反转，对比两数是否相等
+代码
+
+bool isPalindrome(int x){
+    if(x<0)return false;
+    int temp=x;
+    long result=0;
+    while(temp){
+        result=result*10+temp%10;
+        temp/=10;
+    }return result==x?true:false;
+
+}
+
