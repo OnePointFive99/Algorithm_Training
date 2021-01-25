@@ -1,0 +1,20 @@
+解题思路
+
+    模拟法：每一周的钱加到上一周的钱上，最后一周可能不完整，单独算
+
+代码
+
+int totalMoney(int n){
+    int week=(n-1)/7+1;//第n天是第几周
+    int day=(n-1)%7+1;//是最后一周的第几天
+    int result=0;
+
+    for(int i=0;i<week-1;i++){
+        result=result+7*(i+1)+21;//除最后一周之外存的钱
+    }
+    for(int j=0;j<day;j++){
+        result+=week+j;//最后一周存的钱
+    }
+  
+    return result;
+}
