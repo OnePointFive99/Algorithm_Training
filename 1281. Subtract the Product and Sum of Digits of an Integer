@@ -1,0 +1,17 @@
+解题思路
+
+    不断将N降低阶数，加上或乘上最低位即可得到总和sum和乘积product，作差即可
+
+代码
+
+int subtractProductAndSum(int n){
+    int sum=0;
+    int product=1;
+    while(n){
+        int temp=n%10;
+        n/=10;
+        product*=temp;
+        sum+=temp;
+    }return product-sum;
+
+}
