@@ -1,0 +1,19 @@
+解题思路
+
+    渣代码，5分钟速成
+    直接一个个写进数组，返回数组即可
+    试了一下，int 一个常量替换pow(10,n)可以加快速度…
+
+代码
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* printNumbers(int n, int* returnSize){
+    *returnSize= pow(10,n)-1;
+    int *re=malloc((pow(10,n)-1)*sizeof(int));
+    for(int i=1;i<pow(10,n);i++){
+        re[i-1]=i;
+    }return re;
+
+}
