@@ -1,0 +1,26 @@
+解题思路
+
+    暴力法：通过一个循环，若恰好满足则输出i，超过了n则不足一行，输出i-1
+    数学方法：第k行有k个硬币，则检查剩下的硬币n能否满足第i行的硬币即可
+
+代码
+
+//暴力法
+int arrangeCoins(int n){
+    if(n==0)return 0;
+    for(int i=1;i<=n;i++){
+        if((long)(1+i)*i/2==(long)n)return i;
+        else if((long)(1+i)*i/2>(long)n)return i-1;
+    }
+    return -1;
+}
+
+//数学方法
+int arrangeCoins(int n){
+    int re=0;
+    for(int i=1;i<=n;i++){
+        re++;
+        n-=i;
+    }
+    return re;
+}
