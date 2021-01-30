@@ -1,0 +1,24 @@
+解题思路
+
+比较斜率即可，注意特殊情况：
+在一条竖直线上的情况
+代码
+
+bool isBoomerang(int** points, int pointsSize, int* pointsColSize){
+    if(points[0][0]==points[1][0]&&points[0][1]==points[1][1]||
+       points[0][0]==points[2][0]&&points[0][1]==points[2][1]||
+       points[1][0]==points[2][0]&&points[1][1]==points[2][1]||
+       points[0][0]==points[1][0]&&points[0][0]==points[2][0]){//判断三个点是否相同或为竖直线
+           return false;
+       }
+    if(points[0][0]==points[1][0]||points[2][0]==points[1][0]
+        ||points[2][0]==points[0][0])return true;//排除两点为竖直线的情况
+    double k1=(double)(points[1][1]-points[0][1])/(points[1][0]-points[0][0]);
+    double k2=(double)(points[2][1]-points[1][1])/(points[2][0]-points[1][0]);
+    double k3=(double)(points[2][1]-points[0][1])/(points[2][0]-points[0][0]);
+    if(k1==k2&&k2==k3)return false;
+    return true;
+
+
+}
+
