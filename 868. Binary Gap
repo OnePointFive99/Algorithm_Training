@@ -1,0 +1,22 @@
+解题思路
+
+本题需要注意重置zero_count和遇到第一个1后才开始统计0
+代码
+
+int binaryGap(int n){
+    int maxd=0;
+    int zero_count=-1;
+    while(n){
+         if(n%2==1){
+            if(zero_count+1>maxd)maxd=zero_count+1;
+            zero_count=0;
+        }
+        else if(n%2==0&&zero_count!=-1){
+            zero_count++;
+        }
+        n/=2;
+    }
+    return maxd;
+
+}
+
