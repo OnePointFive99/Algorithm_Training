@@ -1,0 +1,37 @@
+解题思路
+
+c语言直接写一个快排：找一个基准值，这个值左边的数都小于它，右边的数都大于它，再对左右各半部分递归
+最终考虑到负负得正，试一试最小的两个数跟最大数相乘是否更大，否则直接输出最大三数之积
+代码
+
+void quickSort(int* nums, int low, int high){
+    if (low >= high)return;
+    int i = low;
+    int j = high;
+    long int index = nums[i];
+    while(i<j){
+        while (i < j && nums[j] >= index) { // 向左寻找第一个小于index的数
+        j--;
+    }
+     if (i < j) {
+                nums[i++] = nums[j]; // 将nums[j]填入nums[i]，并将i向右移动
+            }
+            while (i < j && nums[i] < index){// 向右寻找第一个大于index的数
+                i++;
+            }
+            if (i < j) {
+                nums[j--] = nums[i]; // 将nums[i]填入nums[j]，并将j向左移动
+            }
+
+    }
+    nums[i] = index; // 将基准数填入最后的坑
+    quickSort(nums, low, i - 1); // 递归调用，分治
+    quickSort(nums, i + 1, high); // 递归调用，分治
+}
+
+int maximumProduct(int* nums, int numsSize){
+    quickSort(nums, 0, numsSize-1);
+    return nums[0]*nums[1]*nums[numsSize-1]>nums[numsSize-1]*nums[numsSize-2]*nums[numsSize-3]? nums[0]*nums[1]*nums[numsSize-1]:nums[numsSize-1]*nums[numsSize-2]*nums[numsSize-3];
+
+}
+
