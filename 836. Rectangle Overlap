@@ -1,0 +1,20 @@
+解题思路
+
+先看能不能构成矩形
+能构成的话，题目是相当于用一个向量构造矩形，那我们只需要比较向量的头尾即可直到是否重叠
+注意一下相交不算重叠就好了
+代码
+
+bool isRectangleOverlap(int* rec1, int rec1Size, int* rec2, int rec2Size){
+    int l1=rec1[2]-rec1[0];
+    int w1=rec1[3]-rec1[1];
+    int l2=rec2[2]-rec2[0];
+    int w2=rec2[3]-rec2[1];
+    if(l1==0||w1==0||l2==0||w2==0)return false;//构不成矩形
+    if(rec2[0]>=rec1[2])return false;//右
+    else if(rec2[2]<=rec1[0])return false;//左
+    else if(rec2[1]>=rec1[3])return false;//上
+    else if(rec2[3]<=rec1[1])return false;//下
+    else return true;
+}
+
