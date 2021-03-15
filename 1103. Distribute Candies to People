@@ -1,0 +1,57 @@
+解题思路
+
+暴力模拟方法
+循环链表方法（更优）
+代码
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+
+int* distributeCandies(int candies, int num_people, int* returnSize){
+    int* ans = (int *)malloc(num_people*sizeof(int));
+    memset(ans, 0, sizeof(int)*num_people);
+    int i = 0, j = 0;
+    while(candies){
+        if(candies > i + j * num_people){
+            ans[i] += i + j*num_people + 1;
+            candies -= i + j*num_people + 1;
+        }
+        else{
+            ans[i] += candies;
+            candies = 0;
+        }
+        i++;
+        if(i == num_people){
+            i = 0;
+            j++;
+        }
+    }
+    *returnSize = num_people;
+    return ans;
+}
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ 
+int* distributeCandies(int candies, int num_people, int* returnSize){
+    *returnSize = num_people;
+    int *ans = (int *)malloc(num_people*sizeof(int));
+    memset(ans, 0, sizeof(int)*num_people);
+
+	int k=1 , i=0;
+	ans[i]=k;i++;k++;
+	candies--;
+	while(candies>k)
+	{
+		ans[i%num_people]+=k;
+		i=i%num_people+1;
+		candies-=k;
+		k++;
+	}
+	ans[i%num_people]+=candies;
+	return ans;
+
+}
+*/
+
