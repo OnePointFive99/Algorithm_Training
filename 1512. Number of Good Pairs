@@ -1,0 +1,36 @@
+解题思路
+
+这题跟之前写过的一道题都可以使用一个小技巧：用一个统计数组统计数字出现的次数
+普通的思路就是双循环
+几天不写了，手有点生，太菜了。
+代码
+
+int numIdenticalPairs(int* nums, int numsSize){
+    int result=0;
+    for(int i=0;i<numsSize-1;i++){
+        
+        for(int j=i+1;j<numsSize;j++){
+            if(nums[i]==nums[j])result++;
+        }
+        
+    }
+    return result;
+   
+
+
+}
+/*
+int numIdenticalPairs(int* nums, int numsSize){
+    int hash[101] = {0};
+    int ret = 0;
+
+    for(int i = 0; i < numsSize; i++)
+    {
+        hash[nums[i]]++;
+        ret += hash[nums[i]] - 1;
+    }
+
+    return ret;
+}
+*/
+
