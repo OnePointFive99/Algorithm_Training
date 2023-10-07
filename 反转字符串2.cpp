@@ -63,3 +63,23 @@ public:
         return s;
     }
 };
+
+v4.0
+1. 去掉if-else提速
+class Solution {
+public:
+    void reverseString(string &s, int first, int last) {
+        while(first < last){
+            swap(s[first++], s[last--]);
+        }
+    }
+
+    string reverseStr(string s, int k) {
+        if(k==1) return s;
+        for (int i = 0; i < s.size(); i += 2 * k)
+        {
+            reverseString(s, i, i + min<int>(k - 1, s.size() - i - 1));
+        }
+        return s;
+    }
+};
