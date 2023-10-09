@@ -40,6 +40,7 @@ v2.0:
 1. erase时间复杂度为O(n)，所以for循环嵌套erase，时间复杂度为O(n^2)
 改用双指针
 2. 记住reverse是左闭右开区间
+3. v1.0代码实际上非常容易错，因为随着erase，迭代器指代的不是我们希望的位置
 
 class Solution {
 public:
@@ -80,5 +81,41 @@ public:
             }
         }
         return s;
+    }
+};
+
+v3.0:
+1. 使用了一个删除数组元素的更加模板化的方法
+2.将删除空格单独作为一个函数
+class Solution {
+public:
+    void removeExtraSpaces(string &s){
+        int slowIndex = 0, fastIndex = 0;
+        for(; fastIndex < s.size();fastIndex++){
+            if(s[fastIndex] != ' '){//只处理不包含空格的部分
+                if(slowIndex != 0){
+                    s[slowIndex++] = ' ';//首先加一个空格
+                }
+                while(s[fastIndex] != ' ' && fastIndex<s.size()){
+                    s[slowIndex++] = s[fastIndex++];//剩下不是空格的部分都加进来
+                }
+            }
+
+        }
+        s.resize(slowIndex);
+    }
+    string reverseWords(string s) {
+        removeExtraSpaces(s);
+        reverse(s.begin(), s.end());
+
+        int j = 0;
+        for(int i = 0;i<=s.size();i++){
+            if(s[i]== ' '|| i ==s.size()){
+                reverse(s.begin()+j, s.begin()+i);
+                j = i + 1;
+            }
+        }
+        return s;
+
     }
 };
