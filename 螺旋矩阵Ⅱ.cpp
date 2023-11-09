@@ -39,3 +39,38 @@ public:
 
     }
 };
+
+
+v2.0:
+重温了一下，重点还是while循环里面，然后对于奇数要单独处理
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        int startX = 0, startY = 0, num = 1;
+        int step = n-1;
+        vector<vector<int >> result(n, vector<int>(n, 0));
+        if(n%2!=0){
+            result[n/2][n/2] = n * n;
+        }
+        int loop = n / 2;
+        while(loop--){
+            int i,j;
+            for(i = startY; i < step; i++){
+                result[startX][i] = num++;
+            }
+            for(j = startX; j<step; j++){
+                result[j][i] = num++;
+            }
+            for(;i>startY;i--){
+                result[j][i] = num++;
+            }
+            for(;j>startX;j--){
+                result[j][startY] = num++;
+            }
+            startX++;
+            startY++;
+            step--;
+        }
+        return result;
+    }
+};
