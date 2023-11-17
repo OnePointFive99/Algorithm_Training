@@ -111,3 +111,47 @@ public:
 
     }
 };
+
+
+2023.11.17重写：
+class Solution {
+public:
+    void getNext(string s, vector<int> &next)
+    {
+        int j = 0;//计算公共前后缀
+        for(int i = 1; i<s.size();i++)
+        {
+            while(j>0&&s[i]!=s[j])
+            {
+                j = next[j-1];
+            }
+            if(s[i]==s[j])
+            {
+                j++;
+            }
+            next[i] = j;//当前公共前后缀
+        }
+    }
+
+    int strStr(string haystack, string needle) {
+        int n = needle.size();
+        vector<int> next(n,0);
+        getNext(needle, next);
+        for(int i = 0, j = 0; i< haystack.size();i++)
+        {
+            while(j>0&&haystack[i]!=needle[j])
+            {
+                j = next[j-1];
+            }
+            if(haystack[i]==needle[j])
+            {
+                j++;
+            }
+            if(j==n)
+            {
+                return i-n+1;
+            }
+        }
+        return -1;
+    }
+};
