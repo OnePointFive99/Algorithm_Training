@@ -47,7 +47,7 @@ public:
         if(root==nullptr)return result;
         stack<TreeNode*> stk;
         TreeNode* cur = root;
-        while(!stk.empty())
+        while(cur||!stk.empty())
         {
             if(cur)
             {
