@@ -1,4 +1,4 @@
-v1.0：递归法
+v1.0: 递归法
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -27,7 +27,7 @@ public:
     }
 };
 
-v2.0:迭代法 因为后续遍历时右左中 把前序遍历变成中右左，最后再反转一下就行了
+v2.0: 迭代法 因为后续遍历时右左中 把前序遍历变成中右左，最后再反转一下就行了
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
