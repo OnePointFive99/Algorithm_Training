@@ -37,7 +37,7 @@ public:
     }
 };
 
-v2.0：递归法
+v2.0：递归法  是使用数组表示的树，使用depth来做数组第一维度的下标
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -51,19 +51,21 @@ v2.0：递归法
  */
 class Solution {
 public:
-    void traversal(vector<vector<int>> &ret, TreeNode*cur)
+    void traversal(vector<vector<int>> &ret, TreeNode*cur, int depth)
     {
         if(cur==nullptr)return;
-        vector<int> tmp;
-        
-        traversal(ret, cur->left);
-        traversal(ret, cur->right);
+        if(ret.size()==depth)ret.push_back(vector<int>());
+        ret[depth].push_back(cur->val);
+
+        traversal(ret, cur->left, depth+1);
+        traversal(ret, cur->right, depth+1);
     }
     
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> result;
         if(root==nullptr)return result;
-        traversal(result, root);
-        
+        int depth = 0;
+        traversal(result, root, depth);
+        return result;
     }
 };
