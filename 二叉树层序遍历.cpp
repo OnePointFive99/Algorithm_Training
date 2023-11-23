@@ -37,7 +37,7 @@ public:
     }
 };
 
-v2.0：递归法  是使用数组表示的树，使用depth来做数组第一维度的下标
+v2.0：递归法  是使用数组表示的树，使用depth来做数组第一维度的下标，这样3->9->20->15->7的顺序来的
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
