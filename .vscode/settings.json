@@ -62,6 +62,7 @@
     "vector": "cpp",
     "list": "cpp",
     "xstring": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "xiosbase": "cpp"
   }
 }
