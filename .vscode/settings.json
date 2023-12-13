@@ -66,6 +66,8 @@
     "xiosbase": "cpp",
     "xhash": "cpp",
     "initializer_list": "cpp",
-    "type_traits": "cpp"
+    "type_traits": "cpp",
+    "limits": "cpp",
+    "utility": "cpp"
   }
 }
