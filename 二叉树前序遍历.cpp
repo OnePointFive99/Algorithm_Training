@@ -97,3 +97,7 @@ public:
         return result;
     }
 };
+
+vector<int> result;
+if(root==nullptr)return result;
+stack<TreeNode*> stk;
