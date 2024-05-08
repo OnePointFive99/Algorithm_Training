@@ -30,3 +30,38 @@ public:
         return -1;
     }
 };
+
+补充：
+另一种写法：
+int BinarySearch(vector<int> v, int target)
+{
+    int i = 0, j = v.size() - 1;
+    while (i <= j)
+    {
+        int mid = i + (j - i) / 2;
+        if (v[mid] < target)
+        {
+            i = mid + 1;
+        }
+        else if (v[mid] > target)
+        {
+            j = mid - 1;
+        }
+        else {
+            return mid;
+        }
+
+    }
+    return -1;
+}
+# 关键点
+
+## while的条件为什么是i≤j而不是i<j
+
+想清楚，因为i≤j依旧可以从i到j中找到一个数
+
+## 为什么是i = mid + 1而不是 i= mid？
+
+要明确i到j的区间究竟是什么？
+
+是target可能的值的区间，所以不要把不可能是target的数字包含进来
