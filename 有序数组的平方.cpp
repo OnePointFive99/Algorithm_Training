@@ -33,3 +33,27 @@ public:
         return result;
     }
 };
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+    int left = 0, right = nums.size() - 1;
+    int end = right;
+    vector<int> ret(nums.size());
+    while (left <= right)
+    {
+        if (nums[left] * nums[left] > nums[right] * nums[right])
+        {
+            ret[end--] = nums[left] * nums[left];
+            left++;
+        }
+        else
+        {
+            ret[end--] = nums[right] * nums[right];
+            right--;
+        }
+        
+    }
+    return ret;
+}
+};
