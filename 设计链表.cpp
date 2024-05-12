@@ -79,3 +79,85 @@ private:
  * obj->addAtIndex(index,val);
  * obj->deleteAtIndex(index);
  */
+
+
+class MyLinkedList {
+public:
+    struct LinkNode
+    {
+        int val;
+        LinkNode* next;
+        LinkNode() :val(0), next(nullptr) {};
+        LinkNode(int n) :val(n), next(nullptr) {};
+    };
+
+    MyLinkedList() {
+        dummyHead = new LinkNode();
+        size = 0;
+    }
+
+    int get(int index) {
+        if (index > size - 1)
+            return -1;
+
+        LinkNode* curNode = dummyHead->next;
+        while (index--)
+        {
+            curNode = curNode->next;
+        }
+        return curNode->val;
+    }
+
+    void addAtHead(int val) {
+        LinkNode* newNode = new LinkNode(val);
+        newNode->next = dummyHead->next;
+        dummyHead->next = newNode;
+        size++;
+    }
+
+    void addAtTail(int val) {
+        LinkNode* newNode = new LinkNode(val);
+        LinkNode* curNode = new LinkNode();
+        curNode = dummyHead;
+        while (curNode->next)
+        {
+            curNode = curNode->next;
+        }
+        curNode->next = newNode;
+        size++;
+    }
+
+    void addAtIndex(int index, int val) {
+        if (index > size)
+            return;
+        LinkNode* newNode = new LinkNode(val);
+        LinkNode* curNode = new LinkNode();
+        curNode = dummyHead;
+        while (index--)
+        {
+            curNode = curNode->next;
+        }
+        newNode->next = curNode->next;
+        curNode->next = newNode;
+        size++;
+    }
+
+    void deleteAtIndex(int index) {
+        if (index > size-1)
+            return;
+        LinkNode* curNode = new LinkNode();
+        curNode = dummyHead;
+        while (index--)
+        {
+            curNode = curNode->next;
+        }
+        LinkNode* toDelete = curNode->next;
+        curNode->next = curNode->next->next;
+        delete toDelete;
+        size--;
+    }
+
+private:
+    LinkNode* dummyHead;
+    int size;
+};

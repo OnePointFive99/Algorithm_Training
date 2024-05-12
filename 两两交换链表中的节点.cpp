@@ -27,3 +27,23 @@ public:
         return dummyHead->next;
     }
 };
+
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+    ListNode* dummyHead = new ListNode();
+    dummyHead->next = head;
+    ListNode* pre = dummyHead;
+    
+    while (pre->next&&pre->next->next)
+    {
+        ListNode* left = pre->next;
+        ListNode* right = pre->next->next;
+        pre->next = right;
+        left->next = right->next;
+        right->next = left;
+        pre = left;
+    }
+    return dummyHead->next;
+}
+};

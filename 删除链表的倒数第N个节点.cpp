@@ -45,8 +45,26 @@ public:
         slow->next = slow->next->next;
 
         return dummyHead->next;
-
-
-
     }
 };
+
+ListNode* removeNthFromEnd(ListNode* head, int n) {
+	ListNode* dummyHead = new ListNode();
+	dummyHead->next = head;
+	ListNode* fast = dummyHead;
+	while (n--)
+	{
+		fast = fast->next;
+	}
+	ListNode* slow = dummyHead;
+	while (fast->next)
+	{
+		slow = slow->next;
+		fast = fast->next;
+	}
+	ListNode* todelete = slow->next;
+	slow->next = slow->next->next;
+	
+	delete todelete;
+	return dummyHead->next;
+}

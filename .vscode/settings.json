@@ -7,7 +7,9 @@
     "vector": "cpp",
     "xhash": "cpp",
     "xstring": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "ios": "cpp",
+    "xiosbase": "cpp"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",

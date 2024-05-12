@@ -74,3 +74,40 @@ public:
         return result;
     }
 };
+
+vector<vector<int>> generateMatrix(int n) {
+    vector<vector<int>> matrix(n, vector<int>(n));
+    int startPointX = 0, startPointY = 0;//左上角为0 0
+    int step = n - 1;
+    int content = 1;
+
+    if (n % 2 != 0)
+        matrix[n / 2][n / 2] = n * n;
+
+    int loop = n / 2;
+
+    while (loop--)
+    {
+        int i = 0, j = 0;
+        for (i = startPointY; i < step; i++)
+        {
+            matrix[startPointX][i] = content++;
+        }
+        for (j = startPointX; j < step; j++)
+        {
+            matrix[j][i] = content++;
+        }
+        for (; i > startPointY; i--)
+        {
+            matrix[j][i] = content++;
+        }
+        for (; j > startPointX; j--)
+        {
+            matrix[j][i] = content++;
+        }
+        startPointX++;
+        startPointY++;
+        step--;
+    }
+    return matrix;
+}

@@ -65,3 +65,24 @@ public:
         return result==INT32_MAX?0:result;
     }
 };
+
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+    int left = 0, right = 0, len = 0, sum = 0, min = INT32_MAX;
+    for (; right < nums.size(); right++)
+    {
+        sum += nums[right];
+        len++;
+        while (sum >= target && left < nums.size())
+        {
+            if (len < min)
+                min = len;
+            sum -= nums[left];
+            len--;
+            left++;
+        }
+    }
+    return min==INT32_MAX? 0 : min;
+}
+};

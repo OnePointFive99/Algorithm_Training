@@ -71,3 +71,21 @@ public:
 
     }
 };
+
+v3.0:写反转链表完全不需要虚拟头节点，把nullptr"作为"头节点即可
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* left = nullptr;
+        ListNode* right = head;
+        while (right)
+        {
+            ListNode* tmp = right->next;
+            right->next = left;
+            left = right;
+            right = tmp;
+        }
+
+        return left;
+    }
+};
