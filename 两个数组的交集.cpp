@@ -32,3 +32,41 @@ public:
         return vector<int>(result.begin(),result.end());
     }
 };
+
+v3.0: 哦忘记了用vector初始化set以及用set初始化vector的方法
+vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+    unordered_set<int> set1;
+    unordered_set<int> set2;
+    vector<int> ret;
+    for (int i : nums1)
+    {
+        set1.insert(i);
+    }
+    for (int i : nums2)
+    {
+        set2.insert(i);
+    }
+    for (int i : set1)
+    {
+        if (set2.count(i))
+        {
+            ret.emplace_back(i);
+        }
+    }
+    return ret;
+}
+v4.0:
+vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+    unordered_set<int> set1(nums1.begin(), nums1.end());
+    unordered_set<int> set2(nums2.begin(), nums2.end());
+    vector<int> ret;
+    
+    for (int i : set1)
+    {
+        if (set2.count(i))
+        {
+            ret.emplace_back(i);
+        }
+    }
+    return ret;
+}

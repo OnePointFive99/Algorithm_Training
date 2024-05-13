@@ -61,3 +61,22 @@ public:
 
     }
 };
+v4.0:直接map
+bool isAnagram(string s, string t) {
+    if (s == t)return false;
+    unordered_map<char,int> owned;
+    for (char c : s)
+    {
+        owned[c]++;
+    }
+    for (char c : t)
+    {
+        owned[c]--;
+    }
+    for (auto i : owned)
+    {
+        if (i.second != 0)
+            return false;
+    }
+    return true;
+}
