@@ -51,3 +51,51 @@ public:
         return result;
     }
 };
+
+vector<vector<int>> fourSum(vector<int>& nums, int target) {
+    vector<vector<int>> ret;
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (nums[i] > target && nums[i] >= 0)//剪枝
+            return ret;
+
+        if (i > 0 && nums[i] == nums[i - 1])//去重
+            continue;
+
+
+        for (int j = i + 1; j < nums.size(); j++)
+        {
+            if (nums[i] + nums[j] > target && nums[i] + nums[j]>= 0)//剪枝
+                break;
+
+            if (j > i + 1 && nums[j] == nums[j - 1])//去重
+                continue;
+            
+            int left = j + 1;
+            int right = nums.size() - 1;
+
+            while (left < right)
+            {
+                if ((long)nums[i] + nums[j] + nums[left] + nums[right] == target)
+                {
+                    ret.emplace_back(vector<int>{nums[i], nums[j], nums[left], nums[right]});
+                    left++;
+                    right--;
+                    while (left < right && nums[left] == nums[left - 1])
+                        left++;
+                    while (right > left && nums[right] == nums[right + 1])
+                        right--;
+                }
+                else if ((long)nums[i] + nums[j] + nums[left] + nums[right] > target)
+                {
+                    right--;
+                }
+                else {
+                    left++;
+                }
+            }
+        }
+    }
+    return ret;
+}

@@ -19,3 +19,18 @@ public:
 
     }
 };
+
+bool canConstruct(string ransomNote, string magazine) {
+    unordered_map<int, int> umap;
+    for (auto c : magazine)
+    {
+        umap[c]++;
+    }
+    for (auto c : ransomNote)
+    {
+        umap[c]--;
+        if (umap[c] == -1)
+            return false;
+    }
+    return true; 
+}

@@ -70,3 +70,23 @@ public:
         return count;
     }
 };
+
+int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {
+    unordered_map<int, int> umap;
+    for (int i : nums1)
+    {
+        for (int j : nums2)
+        {
+            umap[0 - i - j]++;
+        }
+    }
+    int ret = 0;
+    for (int i : nums3)
+    {
+        for (int j : nums4)
+        {
+            ret += umap[i + j];
+        }
+    }
+    return ret;
+}

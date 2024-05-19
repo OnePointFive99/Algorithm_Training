@@ -45,3 +45,41 @@ public:
         return result;
     }
 };
+
+vector<vector<int>> threeSum(vector<int>& nums) {
+    vector<vector<int>> ret;
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (nums[i] > 0)
+            return ret;
+
+        if (i > 0 && nums[i - 1] == nums[i])//不用nums[i+1]，因为是跟走过循环的元素比，所以是i-1
+            continue;
+
+        int left = i + 1;
+        int right = nums.size() - 1;
+        while (left < right)
+        {
+            if (nums[i] + nums[left] + nums[right] == 0)
+            {
+                ret.emplace_back(vector<int>{nums[i], nums[left], nums[right]});
+                right--;
+                left++;
+                //不加下面两个while的错误用例：[-2,0,0,2,2]
+                while (left < nums.size() && nums[left] == nums[left - 1])
+                    left++;
+                while (right > i && nums[right] == nums[right + 1])
+                    right--;
+            }
+            else if (nums[i] + nums[left] + nums[right] < 0)
+            {
+                left++;
+            }
+            else {
+                right--;
+            }
+        }
+    }
+    return ret;
+}
