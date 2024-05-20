@@ -59,3 +59,28 @@ public:
         return result;
     }
 };
+
+bool cmp(pair<int, int> p1, pair<int, int> p2)
+{
+    return p1.second > p2.second;
+}
+class Solution {
+public:
+    
+
+vector<int> topKFrequent(vector<int>& nums, int k) {
+    unordered_map<int, int> umap;
+    for (int i : nums)
+    {
+        umap[i]++;
+    }
+    vector<pair<int, int>> forSort(umap.begin(), umap.end());
+    sort(forSort.begin(), forSort.end(), cmp);
+    vector<int> ret;
+    for (int i = 0; i < k; i++)
+    {
+        ret.emplace_back(forSort[i].first);
+    }
+    return ret;
+}
+};

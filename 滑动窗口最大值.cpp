@@ -69,3 +69,51 @@ public:
         return result;
     }
 };
+
+struct MyQueue {
+private:
+    deque<int> q;
+    // 设计的核心思想：push进来的时候，从尾巴开始比，把小的都去掉。因为新来的后面有可能变成最大值
+    // 但是老的比新来的还小的就不可能变成最大值了
+    // pop的时候，如果是最大值，那就要pop，否则不用管
+    // 因为这个队列只需要返回最大值
+public:
+    void Pop(int value)
+    {
+        if (!q.empty() && value == q.front())
+        {
+            q.pop_front();
+        }
+    }
+
+    void Push(int value)
+    {
+        while (!q.empty() && value > q.back())
+        {
+            q.pop_back();
+        }
+        q.push_back(value);
+    }
+
+    int getMax()
+    {
+        return q.front();
+    }
+};
+
+vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    vector<int> ret;
+    MyQueue q;
+    for (int i = 0; i < k; i++)
+    {
+        q.Push(nums[i]);
+    }
+    ret.emplace_back(q.getMax());
+    for (int i = k; i < nums.size(); i++)
+    {
+        q.Pop(nums[i - k]);
+        q.Push(nums[i]);
+        ret.emplace_back(q.getMax());
+    }
+    return ret;
+}
