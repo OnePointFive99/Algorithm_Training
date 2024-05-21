@@ -98,6 +98,52 @@ public:
     }
 };
 
-vector<int> result;
-if(root==nullptr)return result;
-stack<TreeNode*> stk;
+
+void traversal(TreeNode* cur, vector<int> &v)
+{
+    if (cur == nullptr)
+        return;
+    v.emplace_back(cur->val);
+    traversal(cur->left,v);
+    traversal(cur->right,v);
+}
+
+vector<int> preorderTraversal(TreeNode* root) {
+    vector<int> ret;
+    traversal(root, ret);
+    return ret;
+}
+
+//统一迭代
+vector<int> preorderTraversal(TreeNode* root) {
+    vector<int> ret;
+    stack<TreeNode*> s;
+    if(root)
+        s.push(root);
+    while (!s.empty())
+    {
+        TreeNode* cur = s.top();
+        if (cur != nullptr)
+        {
+            s.pop();
+
+            if (cur->right)
+                s.push(cur->right);
+
+            if (cur->left)
+                s.push(cur->left);
+
+            s.push(cur);
+            s.push(nullptr);
+
+            
+        }
+        else
+        {
+            s.pop();
+            ret.emplace_back(s.top()->val);
+            s.pop();
+        }
+    }
+    return ret;
+}
