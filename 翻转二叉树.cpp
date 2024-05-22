@@ -28,3 +28,19 @@ public:
         return root;
     }
 };
+
+void traversal(TreeNode* cur)
+{
+    if (cur == nullptr)
+        return;
+    TreeNode* tmp = cur->left;
+    cur->left = cur->right;
+    cur->right = tmp;
+    traversal(cur->left);
+    traversal(cur->right);
+}
+
+TreeNode* mirrorTree(TreeNode* root) {
+    traversal(root);
+    return root;
+}

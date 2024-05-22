@@ -34,3 +34,19 @@ public:
         return true;
     }
 };
+
+bool traversal(TreeNode* u, TreeNode* v)
+{
+    if (!u && !v)
+        return true;
+    if (!u || !v)
+        return false;
+    if (u->val == v->val)
+        return traversal(u->left, v->right) && traversal(u->right, v->left);
+    return false;
+}
+
+bool isSymmetric(TreeNode* root) {
+    
+    return traversal(root, root);
+}

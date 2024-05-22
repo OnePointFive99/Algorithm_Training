@@ -69,3 +69,25 @@ public:
         return result;
     }
 };
+
+void traversal(TreeNode* cur, int depth, vector<vector<int>> &ret)
+{
+    if (cur == nullptr)
+        return;
+
+    if (depth == ret.size())
+        ret.emplace_back(vector<int>());
+
+    ret[depth].emplace_back(cur->val);
+    traversal(cur->left, depth + 1, ret);
+    traversal(cur->right, depth + 1, ret);
+}
+
+vector<vector<int>> levelOrder(TreeNode* root) {
+    vector<vector<int>> ret;
+    if (root == nullptr)
+        return ret;
+    int depth = 0;
+    traversal(root, depth, ret);
+    return ret;
+}
