@@ -32,3 +32,20 @@ public:
     return max_depth;
     }
 };
+
+// 递归
+int ret;
+
+void traversal(TreeNode* cur, int depth)
+{
+    if (cur == nullptr)
+        return;
+    ret = depth > ret ? depth : ret;
+    traversal(cur->left, depth + 1);
+    traversal(cur->right, depth + 1);
+}
+
+int calculateDepth(TreeNode* root) {
+    traversal(root, 1);
+    return ret;
+}

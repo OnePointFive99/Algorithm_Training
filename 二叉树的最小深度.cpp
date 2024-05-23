@@ -32,3 +32,20 @@ public:
     }
 };
 
+int ret = INT32_MAX;
+void traversal(TreeNode* cur, int depth)
+{
+    if (!cur)
+        return;
+    if(cur && !cur->left && !cur->right)
+        ret = ret > depth ? depth : ret;
+    traversal(cur->left, depth + 1);
+    traversal(cur->right, depth + 1);
+}
+
+int minDepth(TreeNode* root) {
+    if (root == nullptr)
+        return 0;
+    traversal(root, 1);
+    return ret;
+}
